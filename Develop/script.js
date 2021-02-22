@@ -1,11 +1,13 @@
 const characterAmountRange = document.getElementById ('characterAmountRange')
 const characterAmountNumber = document.getElementById ('characterAmountNumber')
-const includeUppercaseElement = document.getElementById (includeUppercase)
-const includeNumbersElement = document.getElementById (includeNumbers)
-const includeSymbolsElement = document.getElementById (includeSymbols)
+const includeUppercaseElement = document.getElementById ('includeUppercase')
+const includeNumbersElement = document.getElementById ('includeNumbers')
+const includeSymbolsElement = document.getElementById ('includeSymbols')
 
 const form = document.getElementById('passwordGeneratorForm')
 const passwordDisplay = document.getElementById('passwordDisplay')
+const button = document.getElementById('btn')
+console.log(button)
 
 const LOWERCASE_CHAR_CODES = arrayFromLowTHigh(97, 122)
 const UPPERCASE_CHAR_CODES = arrayFromLowTHigh(65, 90)
@@ -18,12 +20,20 @@ const SYMBOL_CHAR_CODES = arrayFromLowTHigh(33, 47) .concat(arrayFromLowTHigh (5
 characterAmountNumber.addEventListener ('input', syncCharacterAmount)
 characterAmountRange.addEventListener ('input', syncCharacterAmount)
 
-form.addEventListener('submit' , e => {
-    e.preventDefault()
+
+
+button.addEventListener('click' , function(){
+    console.log("button")
+
+    // e.preventDefault()
     const characterAmount = characterAmountNumber.value 
+    console.log(characterAmount)
     const includeUppercase = includeUppercaseElement.checked
+    console.log(includeUppercase)
     const includeNumbers = includeNumbersElement.checked
+    console.log(includeNumbers)
     const includeSymbols = includeSymbolsElement.checked
+    console.log(includeSymbols)
     const password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
     passwordDisplay.innerText = password
 })
@@ -31,7 +41,7 @@ form.addEventListener('submit' , e => {
 function generatePassword (characterAmount, includeUppercase, includeNumbers, includeSymbols) {
    let charCodes = LOWERCASE_CHAR_CODES
    if (includeUppercase) charCodes = charCodes.concat (UPPERCASE_CHAR_CODES)
-   if (includeLowercase) charCodes = charCodes.concat (LOWERCASE_CHAR_CODES)
+   /*if (includeLowercase) charCodes = charCodes.concat (LOWERCASE_CHAR_CODES)*/
    if (includeSymbols) charCodes = charCodes.concat (SYMBOL_CHAR_CODES)
    if (includeNumbers) charCodes = charCodes.concat (NUMBER_CHAR_CODES)
 
