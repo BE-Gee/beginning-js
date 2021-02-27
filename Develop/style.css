@@ -1,5 +1,5 @@
 body {
-  background-color: darkblue;
+  background-color: azure;
   margin: 0;
   color: white;
   min-height: 100vh;
@@ -19,7 +19,9 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.form {
+
+/* when there where check box
+.form { 
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 1rem;
@@ -27,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+*/
 
 .title {
   margin: 0%;
@@ -71,5 +74,5 @@ label {
 }
 
 .btn:hover {
-  background-color: #ffffff33;
+  background-color: red;
 }
