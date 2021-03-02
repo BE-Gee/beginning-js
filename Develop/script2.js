@@ -1,21 +1,20 @@
-//arrays store characters to be randomly accessed
+// arrays store characters to be randomly accessed
 
-var lowerCase = arrayFromLowTHigh(97, 122)
-var upperCase = arrayFromLowTHigh(65, 90)
-var number = arrayFromLowTHigh(48, 57)
-var special = arrayFromLowTHigh(33, 47) .concat(arrayFromLowTHigh (58, 64) 
-).concat(arrayFromLowTHigh (91, 96)
-).concat(arrayFromLowTHigh (123, 126)
-)
-console.log(special)
+var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var number = "1234567890".split("");
+var special = "!@#$%^&*()_+?~`".split("");
+
+console.log(special);
+
 //function prompt user for user input to get password options
 function getPasswordOptions() {
-
   // Variable to store length of password from user input
   var length = parseInt(
-    window.prompt("How many charactors would you like your password to be?"));
-    
-// ​console.log(length)
+    window.prompt("How many charactors would you like your password to be?")
+  );
+
+  // ​console.log(length)
 
   // Conditional statement to check if pw length is a number
   if (isNaN(length) === true) {
@@ -23,17 +22,17 @@ function getPasswordOptions() {
     return;
   }
 
-  // Condtional statement to check if password length is at least 8 characters 
+  // Condtional statement to check if password length is at least 8 characters
   if (length < 8) {
-    alert('Password length must be at least 8 characters');
+    alert("Password length must be at least 8 characters");
     return;
   }
   // Condtional statement to check if password length is no more than 128 characters
   if (length > 128) {
-    alert('Password maximum length no more than 128 characters');
+    alert("Password maximum length no more than 128 characters");
     return;
   }
-// ​console.log(length) 
+  // ​console.log(length)
   //confirm messages to prompt user
   var useSpecial = window.confirm("Would you like special characters");
   var useNumbers = window.confirm("Would you like numbers");
@@ -50,54 +49,57 @@ function getPasswordOptions() {
   //return object
   return passwordOptions;
 }
-​// Function for getting a random element from an array
+//
 function getRandomElement(characterArrays) {
   var randomIndex = Math.floor(Math.random() * characterArrays.length);
   var randomElement = characterArrays[Math.floor(Math.random() * randomIndex)];
   return randomElement;
 }
-// Function to generate password with user input 
+// Function to generate password with user input
 function generatePassword() {
-​  var options = getPasswordOptions();
-​  // Array to store password as it's being concatenated 
+  var options = getPasswordOptions();
+  // Array to store password as it's being concatenated
   var result = [];
-​  // Array to store types of characters to include in password
+  // Array to store types of characters to include in passwor
   var possibleCharacters = [];
-​// Conditional statement that adds array of special characters into array of possible characters based on user input
+  // Conditional statement that adds array of special characters into array of possible characters based on user input
   if (options.useSpecial) {
     possibleCharacters = possibleCharacters.concat(special);
   }
-​  // Conditional statement that adds array of numbers characters into array of possible characters based on user input
+  // Conditional statement that adds array of numbers characters into array of possible characters based on user input
   if (options.useNumbers) {
-    possibleCharacters = possibleCharacters.concat(numbers);
+    possibleCharacters = possibleCharacters.concat(number);
   }
-​  // Conditional statement that adds array of lowercase characters into array of possible characters based on user input
+  // // Conditional statement that adds array of lowercase characters into array of possible characters based on user input
   if (options.useLowercase) {
     possibleCharacters = possibleCharacters.concat(lowerCase);
   }
-​  // Conditional statement that adds array of uppercase characters into array of possible characters based on user input
+  // // Conditional statement that adds array of uppercase characters into array of possible characters based on user input
   if (options.useUppercase) {
     possibleCharacters = possibleCharacters.concat(upperCase);
   }
-​  // For loop to grab a random character from list of possible characters
+  // ​// For loop to grab a random character from list of possible characters
   for (var i = 0; i < options.length; i++) {
     var possibleChar = getRandomElement(possibleCharacters);
     result.push(possibleChar);
   }
-​  // Join the array to make it a singular string to return 
-  return result.join('');
+  // ​// Join the array to make it a singular string to return
+  return result.join("");
 }
-​// Get references to the #generate element
-​var btn = document.querySelector('#btn');
-​function writePassword() {
-​
+// Get references to the #generate element
+
+var generateBtn = document.querySelector("#btn");
+function writePassword() {
   // Runs the function that will generate the password
   var password = generatePassword();
-​
+  // ​
   // Selects on the HTML where the password is shown
-  var passwordText = document.querySelector('#passwordDisplay');
+  var passwordText = document.querySelector("#passwordDisplay");
+
+  console.log(password);
+
   // Makes the value of the element the string generated from the generatePassword function
   passwordText.value = password;
 }
-//add event listener to button 
+//add event listener to button
 generateBtn.addEventListener("click", writePassword);
